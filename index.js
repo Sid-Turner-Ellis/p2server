@@ -9,8 +9,8 @@ const mainRouter = require('./routes/mainRoute')
 // mongo setup
 const mongoose = require('mongoose');
 const mongoDB =
-  'mongodb+srv://test:test@test.g3tzi.mongodb.net/test?retryWrites=true&w=majority';
-mongoose.connect(
+  'mongodb+srv://test:test@cluster0.g3tzi.mongodb.net/cluster0?retryWrites=true&w=majority'
+  mongoose.connect(
   mongoDB,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => { console.log('your connected to the database'); }
@@ -18,6 +18,10 @@ mongoose.connect(
 mongoose.connection.on('error', (err) => {
   throw new Error('Connection to the database failed', err);
 });
+
+
+
+
 
 //middlewares
 app.use(cors());
@@ -49,5 +53,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`server is running - ${PORT}`);
 });
-
-
